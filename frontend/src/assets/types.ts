@@ -6,6 +6,10 @@ export interface RegistrationFields {
 }
 
 export interface LoginFields{
-    nicname: string
+    nickname: string
     password: string
+}
+
+export interface AppState{
+    isAuthenticated: boolean
 }

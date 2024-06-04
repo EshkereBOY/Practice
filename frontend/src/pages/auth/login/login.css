@@ -1,0 +1,21 @@
+.login-card{
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    text-align: center;
+    width: 500px;
+    margin-top: 1.5em;
+    padding: 0.5em;
+    background-color: #3c3c3c;
+    border-radius: 1em;
+    border: solid #262626 5px;
+    font-color: #cccccc;
+    padding : 3em;
+}
+
+h1{
+    margin: 0;
+}
+.btn-log{
+    font-size: 20px;
+}

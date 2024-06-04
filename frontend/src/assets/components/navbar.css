@@ -1,6 +1,37 @@
-#root {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
+.Navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-basis: content;
+    height: 5em;
+    padding: 0 2em;
+    background-color: #121212;
+    min-width: 770px;
+    position: sticky;
+    top: 0;
+}
+nav{
+    display: flex;  
+    justify-content: space-evenly;
+}
+
+.Logo{
+    width: 4em;
+    height: 4em;
+    border-radius: 0.4em;
+    border: solid black 2px;
+}
+.NavLink{
+    font-weight: 600 !important;
+    font-size: 20px;
+    color: white;
+}
+
+.NavLink:hover{
+    color: gray;
+}
+
+.ShopName{
+    position: absolute;
+    left: 105px;
 }

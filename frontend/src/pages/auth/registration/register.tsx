@@ -1,26 +1,28 @@
 import React from 'react';
 import { useForm, SubmitHandler } from "react-hook-form";
-import { RegistrationFields } from '../../assets/types';
+import { RegistrationFields } from '../../../assets/types';
 import './reg_index.css'
+import { Link } from 'react-router-dom';
 
+const API = 'https://api.example.com/endpoint';
 
 const RegisterPage = () => {
     const { register, handleSubmit, formState: { errors }, watch } = useForm<RegistrationFields>({
         mode: 'onChange',
     });
 
-    const OnSubmit: SubmitHandler<RegistrationFields> = data => {
+    const OnSubmit: SubmitHandler<RegistrationFields> = UserData => {
         // TODO: дописать отправку на сервер  
-        console.log(data);
+        console.log(UserData);
     };
+
 
     const password = watch('password'); // Наблюдаем за полем пароля
 
     return (
-        <div className='main-card'>
-            <form onSubmit={handleSubmit(OnSubmit)}>
+            <form onSubmit={handleSubmit(OnSubmit)} className='register-card'>
                 <h1>REGISTRATION</h1>
-                <p>nickname</p>
+                <p>Nickname</p>
                 <input {...register('nickname', {
                     required: "Please enter nickname",
                     minLength: 5,
@@ -30,7 +32,7 @@ const RegisterPage = () => {
                     type='text'
                 />
                 <div>{errors?.nickname && <div>{errors.nickname.message}</div>}</div>
-                <p>email</p>
+                <p>Email</p>
                 <input {...register('email', {
                     required: "Please enter email",
                     minLength: 5,
@@ -41,7 +43,7 @@ const RegisterPage = () => {
                 />
                 <div>{errors?.email && <div>{errors.email.message}</div>}</div>
 
-                <p>password</p>
+                <p>Password</p>
                 <input {...register('password', {
                     required: "Please enter password",
                     minLength: 8,
@@ -51,7 +53,7 @@ const RegisterPage = () => {
                     type='password'
                 />
                 <div>{errors?.password && <div>{errors.password.message}</div>}</div>
-                <p>confirm password</p>
+                <p>Confirm password</p>
                 <input {...register('confirmPassword', {
                     required: "Please confirm your password",
                     validate: (value) => value === password || "Passwords do not match" // Валидация совпадения паролей
@@ -60,9 +62,10 @@ const RegisterPage = () => {
                     type='password'
                 />
                 <div>{errors?.confirmPassword && <div>{errors.confirmPassword.message}</div>}</div>
-                <button>Register</button>
+
+                <button className='btn-reg'>Register</button>
+
             </form>
-        </div>
     );
 };
 

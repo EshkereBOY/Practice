@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm, SubmitHandler } from "react-hook-form";
-import { LoginFields } from '../../assets/types';
+import { LoginFields } from '../../../assets/types';
+import { Link } from 'react-router-dom';
 import './login.css'
 
 
@@ -17,8 +18,8 @@ const LoginPage = () => {
     const password = watch('password'); // Наблюдаем за полем пароля
 
     return (
-        <div className='main-card'>
-            <form onSubmit={handleSubmit(OnSubmit)}>
+        <div>
+            <form onSubmit={handleSubmit(OnSubmit)} className='login-card'>
                 <h1>LOGIN PAGE</h1>
                 <p>Nickname</p>
                 <input {...register('nickname', {
@@ -41,8 +42,9 @@ const LoginPage = () => {
                     type='password'
                 />
                 <div>{errors?.password && <div>{errors.password.message}</div>}</div>
-                
-                <button>Login</button>
+                <p>Don`t have an account (<Link className='NavLink' to="/registration">Registration</Link>)
+                </p>
+                <button className='btn-log'>Login</button>
             </form>
         </div>
     );
