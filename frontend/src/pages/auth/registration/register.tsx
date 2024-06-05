@@ -2,18 +2,23 @@ import React from 'react';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { RegistrationFields } from '../../../assets/types';
 import './reg_index.css'
-import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-const API = 'https://api.example.com/endpoint';
+const API = 'https://summer-api/login'
 
 const RegisterPage = () => {
     const { register, handleSubmit, formState: { errors }, watch } = useForm<RegistrationFields>({
         mode: 'onChange',
     });
 
-    const OnSubmit: SubmitHandler<RegistrationFields> = UserData => {
-        // TODO: дописать отправку на сервер  
-        console.log(UserData);
+    const OnSubmit: SubmitHandler<RegistrationFields> = data => {
+        axios.post(API, data)
+    .then(response => {
+      console.log('Success:', response.data);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
     };
 
 

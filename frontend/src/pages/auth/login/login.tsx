@@ -3,19 +3,24 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { LoginFields } from '../../../assets/types';
 import { Link } from 'react-router-dom';
 import './login.css'
+import axios from 'axios';
 
+const API = 'https://summer-api/login'
 
 const LoginPage = () => {
-    const { register, handleSubmit, formState: { errors }, watch } = useForm<LoginFields>({
+    const { register, handleSubmit, formState: { errors }} = useForm<LoginFields>({
         mode: 'onChange',
     });
 
     const OnSubmit: SubmitHandler<LoginFields> = data => {
-        // TODO: дописать отправку на сервер  
-        console.log(data);
+        axios.post(API, data)
+    .then(response => {
+      console.log('Success:', response.data);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
     };
-
-    const password = watch('password'); // Наблюдаем за полем пароля
 
     return (
         <div>
@@ -32,7 +37,7 @@ const LoginPage = () => {
                 />
                 <div>{errors?.nickname && <div>{errors.nickname.message}</div>}</div>
 
-                <p>password</p>
+                <p>Password</p>
                 <input {...register('password', {
                     required: "Please enter password",
                     minLength: 8,
